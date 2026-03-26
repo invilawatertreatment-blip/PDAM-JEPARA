@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invila - Water as a Service 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 64, 175, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        .glass-header {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #60a5fa 100%);
+            background-size: 200% auto;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            background-position: right center;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .logo-glow {
+            filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.5));
+        }
+
+        /* Hero Image/Animation Placeholder */
+        .hero-mesh {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10L90 90M90 10L10 90' stroke='%231e3a8a' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+
+        #mobile-menu {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-20px);
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        #mobile-menu.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="text-slate-100 overflow-x-hidden">
+
+    <header class="glass-header fixed top-0 w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                
+                <!-- Logo Section: Sesuai Logo 2026 -->
+                <div class="flex items-center space-x-4 group cursor-pointer">
+                    <div class="relative w-12 h-12 flex items-center justify-center">
+                        <svg viewBox="0 0 100 125" class="w-full h-full logo-glow overflow-visible">
+                            <defs>
+                                <linearGradient id="dropGradNew" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Water Drop Shape -->
+                            <path d="M50 0C25 45 15 65 15 85C15 107 30 125 50 125C70 125 85 107 85 85C85 65 75 45 50 0Z" fill="url(#dropGradNew)"/>
+                            
+                            <!-- Circuit Pattern from the Uploaded Image -->
+                            <g transform="translate(30, 65) scale(0.4)" stroke="black" stroke-width="8" fill="none">
+                                <circle cx="20" cy="50" r="10" stroke="black" stroke-width="12" />
+                                <circle cx="80" cy="20" r="10" stroke="black" stroke-width="12" />
+                                <circle cx="80" cy="80" r="10" stroke="black" stroke-width="12" />
+                                <path d="M20 50 L80 20 M20 50 L80 80" />
+                                <!-- Center Highlight Node -->
+                                <circle cx="50" cy="50" r="8" fill="white" stroke="none" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="text-2xl font-extrabold tracking-tighter text-white">INVILA<span class="text-[10px] align-top ml-0.5 font-bold text-blue-400">TM</span></span>
+                        <span class="text-[9px] text-blue-300 font-bold tracking-[0.35em] mt-1.5 uppercase">Water as a Service</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation: To The Point -->
+                <nav class="hidden lg:flex items-center space-x-12">
+                    <a href="#" class="nav-link text-[11px] font-bold tracking-[0.2em] text-slate-400 hover:text-white uppercase">Zero Capex</a>
+                    <a href="#" class="nav-link text-[11px] font-bold tracking-[0.2em] text-slate-400 hover:text-white uppercase">Solutions</a>
+                    <a href="#" class="nav-link text-[11px] font-bold tracking-[0.2em] text-slate-400 hover:text-white uppercase">Portfolio</a>
+                    <a href="#" class="nav-link text-[11px] font-bold tracking-[0.2em] text-slate-400 hover:text-white uppercase">IoT Tech</a>
+                </nav>
+
+                <!-- CTA -->
+                <div class="hidden md:block">
+                    <button class="btn-cta px-9 py-3 rounded-full text-[11px] font-extrabold tracking-[0.18em] text-white">
+                        HUBUNGI PARTNER
+                    </button>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <button class="lg:hidden text-white p-2" onclick="toggleMenu()">
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-slate-950/98 border-b border-white/5 p-8 flex flex-col space-y-6">
+            <a href="#" class="text-sm font-bold tracking-widest text-slate-300 uppercase">Zero Capex</a>
+            <a href="#" class="text-sm font-bold tracking-widest text-slate-300 uppercase">Solutions</a>
+            <a href="#" class="text-sm font-bold tracking-widest text-slate-300 uppercase">Portfolio</a>
+            <a href="#" class="text-sm font-bold tracking-widest text-slate-300 uppercase">IoT Tech</a>
+            <div class="pt-4">
+                <button class="btn-cta w-full py-4 rounded-2xl text-xs font-bold tracking-widest uppercase">Hubungi Partner</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-mesh"></div>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-6 pt-44 pb-20 flex flex-col items-center text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold tracking-widest uppercase mb-10">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            <span>Sustainable Industrial Water Solutions</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl font-black text-white mb-8 leading-[1.05] max-w-5xl tracking-tight">
+            Efficiency Through <br/>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-100 to-cyan-300">Intelligent Service.</span>
+        </h1>
+        
+        <p class="text-slate-400 text-lg md:text-xl max-w-3xl mb-14 leading-relaxed font-medium">
+            Tingkatkan standar operasional industri Anda dengan skema <b>WaaS (Water as a Service)</b>. <br class="hidden md:block"/> 
+            Implementasi teknologi mutakhir tanpa beban investasi awal.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-5">
+            <button class="px-12 py-5 bg-white text-slate-950 font-extrabold rounded-full hover:bg-blue-50 transition-all shadow-2xl shadow-white/5">Mulai Zero Capex</button>
+            <button class="px-12 py-5 bg-transparent border border-slate-700 text-white font-extrabold rounded-full hover:bg-slate-800 transition-all">Lihat Roadmap Teknologi</button>
+        </div>
+
+        <!-- Trust Indicator -->
+        <div class="mt-24 pt-10 border-t border-white/5 w-full max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+            <div class="flex items-center justify-center font-bold tracking-tighter text-xl">TRUSTED</div>
+            <div class="flex items-center justify-center font-bold tracking-tighter text-xl">PARTNER</div>
+            <div class="flex items-center justify-center font-bold tracking-tighter text-xl">INDUSTRY</div>
+            <div class="flex items-center justify-center font-bold tracking-tighter text-xl">READY</div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('active');
+            if (menu.classList.contains('active')) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+            }
+        }
+    </script>
+</body>
+</html>
