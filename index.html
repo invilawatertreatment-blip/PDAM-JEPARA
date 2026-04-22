@@ -1,1263 +1,911 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Invila™ | Zero Capex Water Infrastructure</title>
-  <meta name="description" content="Halaman premium B2B industrial untuk Invila™ dengan model Zero Capex Water Infrastructure, solusi industrial water treatment, dan SCADA-IoT monitoring." />
-  <style>
-    :root {
-      --bg: #ffffff;
-      --bg-soft: #f6f9fc;
-      --surface: rgba(255, 255, 255, 0.96);
-      --surface-2: rgba(244, 248, 252, 0.98);
-      --line: rgba(15, 23, 42, 0.08);
-      --line-strong: rgba(14, 165, 233, 0.18);
-      --text: #0f172a;
-      --muted: rgba(15, 23, 42, 0.72);
-      --muted-2: rgba(15, 23, 42, 0.54);
-      --blue-1: #1d4ed8;
-      --blue-2: #0ea5e9;
-      --blue-3: #67e8f9;
-      --navy: #091222;
-      --success: #34d399;
-      --shadow-xl: 0 30px 80px rgba(15, 23, 42, 0.08);
-      --shadow-lg: 0 16px 42px rgba(15, 23, 42, 0.08);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --container: 1280px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #ffffff;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: none;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-      border: 0;
-      background: none;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    img, svg {
-      display: block;
-      max-width: 100%;
-    }
-
-    .container {
-      width: min(var(--container), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: #ffffff;
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
-    }
-
-    .header.scrolled {
-      background: #ffffff;
-      border-color: var(--line);
-      box-shadow: 0 12px 38px rgba(15, 23, 42, 0.06);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      min-height: 280px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      flex-shrink: 0;
-    }
-
-    .brand-mark {
-      width: 240px;
-      height: 240px;
-      object-fit: contain;
-      filter: drop-shadow(0 18px 34px rgba(14, 165, 233, 0.16));
-    }
-
-    .brand-text {
-      display: flex;
-      align-items: flex-start;
-      gap: 2px;
-      font-size: 40px;
-      font-weight: 900;
-      letter-spacing: 0.8px;
-      line-height: 0.95;
-      color: #0f172a;
-    }
-
-    .brand-text sup {
-      font-size: 11px;
-      color: #7dd3fc;
-      transform: translateY(5px);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-      flex: 1;
-      list-style: none;
-    }
-
-    .nav-links a {
-      position: relative;
-      text-transform: uppercase;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      color: rgba(15, 23, 42, 0.72);
-      padding: 8px 0;
-      transition: color 0.24s ease;
-      white-space: nowrap;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--blue-2), var(--blue-3));
-      transition: width 0.24s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #0f172a;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .btn,
-    .btn-ghost,
-    .menu-toggle {
-      display: none;
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(15, 23, 42, 0.12);
-      background: rgba(255, 255, 255, 0.94);
-      position: relative;
-    }
-
-    .menu-toggle span,
-    .menu-toggle::before,
-    .menu-toggle::after {
-      content: "";
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      height: 2px;
-      border-radius: 999px;
-      background: #0f172a;
-      transition: transform 0.24s ease, opacity 0.24s ease, top 0.24s ease;
-    }
-
-    .menu-toggle span { top: 22px; }
-    .menu-toggle::before { top: 15px; }
-    .menu-toggle::after { top: 29px; }
-
-    .menu-open .menu-toggle span { opacity: 0; }
-    .menu-open .menu-toggle::before { top: 22px; transform: rotate(45deg); }
-    .menu-open .menu-toggle::after { top: 22px; transform: rotate(-45deg); }
-
-    .hero {
-      padding: 34px 0 92px;
-    }
-
-    .hero-shell {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      border-radius: 38px;
-      background: #ffffff;
-      box-shadow: var(--shadow-xl);
-      isolation: isola
-
-    .hero-shell::before {
-      content: "";
-      position: absolute;
-      inset: auto -10% -35% auto;
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, rgba(14, 165, 233, 0.14), transparent 65%);
-      z-index: -1;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 28px;
-      align-items: stretch;
-      padding: 42px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 14px;
-      border: 1px solid rgba(125, 211, 252, 0.22);
-      border-radius: 999px;
-      color: #7dd3fc;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      background: rgba(14, 165, 233, 0.08);
-      margin-bottom: 22px;
-    }
-
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.12);
-    }
-
-    .hero-title {
-      font-size: clamp(44px, 6vw, 80px);
-      line-height: 0.94;
-      font-weight: 900;
-      letter-spacing: -2px;
-      max-width: 10.5ch;
-    }
-
-    .hero-title .accent {
-      background: linear-gradient(90deg, #1d4ed8, #0ea5e9);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-lead {
-      margin-top: 22px;
-      max-width: 700px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.76;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .hero-points {
-      list-style: none;
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      max-width: 760px;
-    }
-
-    .hero-points li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(15,23,42,0.08);
-      background: rgba(255,255,255,0.96);
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .hero-points li::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, var(--blue-3), var(--blue-2));
-      box-shadow: 0 0 0 6px rgba(14, 165, 233, 0.1);
-      flex-shrink: 0;
-    }
-
-    .hero-panel {
-      height: 100%;
-      display: grid;
-      gap: 18px;
-      align-content: start;
-    }
-
-    .glass-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      border: 1px solid rgba(15,23,42,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,255,0.98));
-      box-shadow: var(--shadow-lg);
-    }
-
-    .metric-card {
-      padding: 24px;
-    }
-
-    .metric-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .metric-title {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.3px;
-    }
-
-    .metric-badge {
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(125, 211, 252, 0.2);
-      background: rgba(14,165,233,0.08);
-      color: #8ce8ff;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.1px;
-      font-weight: 800;
-    }
-
-    .big-stat {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-
-    .big-stat strong {
-      font-size: clamp(42px, 4vw, 58px);
-      line-height: 0.9;
-      letter-spacing: -2px;
-      font-weight: 900;
-    }
-
-    .big-stat span {
-      font-size: 14px;
-      color: var(--muted-2);
-      padding-bottom: 7px;
-    }
-
-    .metric-copy {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .metric-list {
-      margin-top: 20px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .metric-list li {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 13px 14px;
-      border-radius: 16px;
-      background: #ffffff;
-      border: 1px solid rgba(15,23,42,0.08);
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .metric-list b {
-      color: #0f172a;
-      font-size: 14px;
-    }
-
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      padding: 0 24px 24px;
-    }
-
-    .score-item {
-      padding: 16px;
-      border-radius: 20px;
-      border: 1px solid rgba(15,23,42,0.08);
-      background: #ffffff;
-    }
-
-    .score-item strong {
-      display: block;
-      font-size: 24px;
-      margin-bottom: 8px;
-      font-weight: 900;
-    }
-
-    .score-item span {
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .trust-strip {
-      padding: 18px 42px 28px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .trust-copy {
-      color: var(--muted-2);
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .trust-items {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .trust-pill {
-      min-height: 54px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px;
-      text-align: center;
-      border-radius: 18px;
-      border: 1px solid rgba(15,23,42,0.08);
-      background: #ffffff;
-      color: rgba(15,23,42,0.82);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .section {
-      padding: 0 0 92px;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: 26px;
-      align-items: end;
-      margin-bottom: 28px;
-    }
-
-    .section-kicker {
-      display: inline-block;
-      margin-bottom: 16px;
-      color: #7dd3fc;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      font-size: clamp(32px, 4vw, 54px);
-      line-height: 1;
-      font-weight: 900;
-      letter-spacing: -1.4px;
-      max-width: 12ch;
-    }
-
-    .section-copy {
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
-      max-width: 760px;
-    }
-
-    .benefit-grid,
-    .solutions-grid,
-    .case-grid,
-    .insight-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .benefit-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .solutions-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .case-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .insight-grid {
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: stretch;
-    }
-
-    .feature-card,
-    .solution-card,
-    .case-card,
-    .monitor-card,
-    .cta-card {
-      padding: 34px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 26px;
-      align-items: center;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(103, 232, 249, 0.12), transparent 30%),
-        linear-gradient(135deg, rgba(14,165,233,0.08), rgba(29,78,216,0.04), rgba(255,255,255,0.98));
-    }
-
-    .cta-card h3 {
-      font-size: clamp(30px, 3.8vw, 52px);
-      line-height: 0.98;
-      font-weight: 900;
-      letter-spacing: -1px;
-      max-width: 14ch;
-      margin-bottom: 14px;
-    }
-
-    .cta-card p {
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
-    }
-
-    .cta-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-width: 260px;
-    }
-
-    .footer {
-      padding: 0 0 36px;
-    }
-
-    .footer-shell {
-      border-top: 1px solid rgba(15,23,42,0.08);
-      padding-top: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      color: var(--muted-2);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #0f172a;
-      font-weight: 800;
-    }
-
-    .footer-brand img {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 18px rgba(14, 165, 233, 0.2));
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .delay-1 { transition-delay: 0.08s; }
-    .delay-2 { transition-delay: 0.16s; }
-    .delay-3 { transition-delay: 0.24s; }
-    .delay-4 { transition-delay: 0.32s; }
-
-    @keyframes drawLine {
-      to { stroke-dashoffset: 0; }
-    }
-
-    @media (max-width: 1180px) {
-      .nav {
-        min-height: 180px;
-      }
-
-      .brand-mark {
-        width: 160px;
-        height: 160px;
-      }
-
-      .hero-grid,
-      .section-head,
-      .insight-grid,
-      .cta-card {
-        grid-template-columns: 1fr;
-      }
-
-      .benefit-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .solutions-grid,
-      .case-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .trust-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-stack {
-        min-width: 0;
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 940px) {
-      .menu-toggle {
-        display: inline-flex;
-      }
-
-      .nav-actions .btn-ghost {
-        display: none;
-      }
-
-      .nav-links {
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        top: calc(100% + 12px);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 18px;
-        border-radius: 24px;
-        border: 1px solid rgba(15,23,42,0.08);
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: var(--shadow-lg);
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: opacity 0.24s ease, visibility 0.24s ease, transform 0.24s ease;
-      }
-
-      .menu-open .nav-links {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .nav-links a {
-        width: 100%;
-      }
-
-      .nav-actions .btn {
-        display: none;
-      }
-
-      .nav {
-        min-height: 140px;
-      }
-
-      .brand-mark {
-        width: 120px;
-        height: 120px;
-      }
-
-      .hero-grid {
-        padding: 28px;
-      }
-
-      .hero-points,
-      .score-grid,
-      .trust-items {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        width: min(var(--container), calc(100% - 24px));
-      }
-
-      .nav {
-        min-height: 108px;
-      }
-
-      .brand-text {
-        font-size: 24px;
-      }
-
-      .brand-mark {
-        width: 96px;
-        height: 96px;
-      }
-
-      .hero {
-        padding-top: 18px;
-      }
-
-      .hero-grid,
-      .trust-strip,
-      .feature-card,
-      .solution-card,
-      .case-card,
-      .monitor-card,
-      .cta-card,
-      .metric-card,
-      .score-grid {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
-      .hero-shell {
-        border-radius: 28px;
-      }
-
-      .hero-title,
-      .section-title,
-      .cta-card h3 {
-        letter-spacing: -1.2px;
-      }
-
-      .hero-lead,
-      .section-copy,
-      .cta-card p {
-        font-size: 15px;
-      }
-
-      .hero-points,
-      .benefit-grid,
-      .solutions-grid,
-      .case-grid,
-      .score-grid,
-      .trust-items,
-      .chart-legend {
-        grid-template-columns: 1fr;
-      }
-
-      .metric-header,
-      .dashboard-head,
-      .footer-shell {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .trust-strip {
-        gap: 14px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header class="header" id="top">
-    <div class="container nav" data-nav>
-      <a href="#top" class="brand" aria-label="Invila home">
-        <img class="brand-mark" src="LOGO INVILA 2026.png" alt="Logo Invila™" />
-        <span class="brand-text">INVILA<sup>TM</sup></span>
-      </a>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#zero-capex" class="active">Zero Capex</a></li>
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#case-studies">Case Studies</a></li>
-        <li><a href="#iot-monitoring">IoT & Monitoring</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <a href="#contact" class="btn-ghost">Visit Factory</a>
-        <a href="#contact" class="btn">Hubungi Partner</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
-          <span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container">
-        <div class="hero-shell reveal is-visible">
-          <div class="hero-grid">
-            <div>
-              <span class="eyebrow"><span class="eyebrow-dot"></span> Industrial Water Infrastructure</span>
-              <h1 class="hero-title">Water Infrastructure <span class="accent">tanpa beban capex besar.</span></h1>
-              <p class="hero-lead">
-                Invila™ membantu pabrik bergerak lebih cepat dengan model Zero Capex, solusi industrial water treatment yang relevan, dan SCADA-IoT monitoring yang membuat performa sistem terlihat real-time untuk level CEO sampai Environment Manager.
-              </p>
-
-              <div class="hero-actions">
-                <a href="#contact" class="btn">Hubungi Partner</a>
-                <a href="#case-studies" class="btn-ghost">Lihat Case Studies</a>
-              </div>
-
-              <ul class="hero-points">
-                <li>Model bisnis langsung bicara cash flow, bukan sekadar mesin.</li>
-                <li>Masuk ke solusi lebih cepat sesuai pain point plant Anda.</li>
-                <li>Monitoring performa berbasis SCADA-IoT, bukan blind operation.</li>
-                <li>Lebih mudah bawa diskusi ke langkah berikutnya: WhatsApp dan visit factory.</li>
-              </ul>
-            </div>
-
-            <aside class="hero-panel">
-              <div class="glass-card metric-card">
-                <div class="metric-header">
-                  <div class="metric-title">Executive Snapshot</div>
-                  <div class="metric-badge">B2B Premium</div>
-                </div>
-                <div class="big-stat">
-                  <strong data-count="0" data-target="0">0</strong>
-                  <span>Capex awal</span>
-                </div>
-                <p class="metric-copy">
-                  Posisi pesan dibuka langsung dengan value proposition yang kuat: percepat keputusan investasi infrastruktur air tanpa menambah tekanan capex di awal proyek.
-                </p>
-                <ul class="metric-list">
-                  <li><span>Entry point diskusi</span><b>Zero Capex</b></li>
-                  <li><span>Kepercayaan teknis</span><b>SCADA-IoT</b></li>
-                  <li><span>Tujuan CTA</span><b>WhatsApp + Factory Visit</b></li>
-                </ul>
-              </div>
-
-              <div class="glass-card">
-                <div class="score-grid">
-                  <div class="score-item">
-                    <strong data-count="0" data-target="24" data-suffix="/7">0</strong>
-                    <span>Monitoring visibility untuk performa operasional.</span>
-                  </div>
-                  <div class="score-item">
-                    <strong data-count="0" data-target="3" data-suffix="x">0</strong>
-                    <span>Menu lebih menohok untuk visitor industrial.</span>
-                  </div>
-                  <div class="score-item">
-                    <strong data-count="0" data-target="1" data-prefix="#">0</strong>
-                    <span>CTA utama diarahkan ke koneksi partner.</span>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-
-          <div class="trust-strip">
-            <div class="trust-copy">Designed for industrial stakeholders</div>
-            <div class="trust-items">
-              <div class="trust-pill">CEO Focused</div>
-              <div class="trust-pill">Finance Ready</div>
-              <div class="trust-pill">Plant Visibility</div>
-              <div class="trust-pill">Environment Compliance</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="zero-capex">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="section-kicker">Zero Capex</span>
-            <h2 class="section-title">Buka diskusi dari economics, bukan dari spesifikasi alat.</h2>
-          </div>
-          <p class="section-copy">
-            Untuk audiens B2B industrial, pesan paling kuat bukan hanya teknologi. Yang paling cepat menohok adalah bagaimana proyek bisa jalan, performa bisa dikontrol, dan arus kas bisa tetap sehat. Karena itu menu dan struktur halaman ini dibuat untuk menggeser fokus dari beli equipment ke outcome bisnis dan operasional.
-          </p>
-        </div>
-
-        <div class="benefit-grid">
-          <article class="feature-card reveal delay-1">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M4 14h16M7 10h10M10 6h4M5 18h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
-            </div>
-            <span class="card-eyebrow">Cash Flow</span>
-            <h3 class="card-title">Lebih mudah diterima level direksi.</h3>
-            <p class="card-copy">Bahasa komunikasi diarahkan ke pengurangan tekanan capex awal sambil menjaga hasil proyek tetap terukur dan dapat diawasi.</p>
-            <ul class="mini-list">
-              <li><span>Diskusi lebih relevan untuk direktur keuangan.</span><b>Finance fit</b></li>
-              <li><span>Mempercepat pembahasan feasibility.</span><b>Faster buy-in</b></li>
-            </ul>
-          </article>
-
-          <article class="feature-card reveal delay-2">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
-            </div>
-            <span class="card-eyebrow">Operational Outcome</span>
-            <h3 class="card-title">Tidak berhenti di janji saving.</h3>
-            <p class="card-copy">Halaman tetap membawa visitor ke jalur teknis yang jelas: solusi yang relevan, bukti implementasi, lalu monitoring performa secara real-time.</p>
-            <ul class="mini-list">
-              <li><span>Value proposition tetap nyambung ke operasi plant.</span><b>Plant ready</b></li>
-              <li><span>Lebih mudah diterima manager teknis.</span><b>Aligned</b></li>
-            </ul>
-          </article>
-
-          <article class="feature-card reveal delay-3">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M5 12.5 9.5 17 19 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-            </div>
-            <span class="card-eyebrow">Next Step</span>
-            <h3 class="card-title">CTA jelas untuk lanjut ke percakapan.</h3>
-            <p class="card-copy">Setelah value terbaca, visitor diarahkan ke aksi yang paling dekat dengan conversion: klik WhatsApp dan jadwalkan visit factory untuk analisa project.</p>
-            <ul class="mini-list">
-              <li><span>Minim friksi untuk hubungi partner.</span><b>Direct CTA</b></li>
-              <li><span>Lebih dekat ke proses sales actual.</span><b>Visit factory</b></li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="solutions">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="section-kicker">Solutions</span>
-            <h2 class="section-title">Masuk cepat ke solusi yang dibutuhkan pabrik.</h2>
-          </div>
-          <p class="section-copy">
-            Navigasi sengaja dibuat lebih tajam supaya visitor tidak keliling terlalu lama. Begitu masuk ke halaman, mereka langsung melihat area solusi utama yang biasanya paling relevan untuk percakapan awal proyek industrial water infrastructure.
-          </p>
-        </div>
-
-        <div class="solutions-grid">
-          <article class="solution-card reveal delay-1">
-            <span class="solution-tag">Make-Up Water</span>
-            <h3 class="card-title">Water Treatment Systems</h3>
-            <p class="card-copy">Struktur copy menyiapkan jalur masuk untuk sistem treatment air baku, polishing, atau kebutuhan stabilisasi kualitas air industri.</p>
-          </article>
-
-          <article class="solution-card reveal delay-2">
-            <span class="solution-tag">Process Reuse</span>
-            <h3 class="card-title">Recycling & Reuse</h3>
-            <p class="card-copy">Cocok untuk visitor yang datang dengan target efisiensi air, recovery, dan optimasi utilitas berbasis performa nyata di lapangan.</p>
-          </article>
-
-          <article class="solution-card reveal delay-3">
-            <span class="solution-tag">Compliance</span>
-            <h3 class="card-title">Wastewater & Discharge</h3>
-            <p class="card-copy">Memberi jalur yang jelas untuk bahasan lingkungan, discharge quality, dan kebutuhan pengelolaan air limbah secara industrial.</p>
-          </article>
-
-          <article class="solution-card reveal delay-4">
-            <span class="solution-tag">Visibility</span>
-            <h3 class="card-title">SCADA-IoT Monitoring</h3>
-            <p class="card-copy">Menguatkan positioning Invila™ sebagai partner yang bukan hanya pasang sistem, tetapi juga membuat performanya terlihat dan terkendali.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="case-studies">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="section-kicker">Case Studies</span>
-            <h2 class="section-title">Bukti implementasi yang terasa konkret.</h2>
-          </div>
-          <p class="section-copy">
-            Untuk halaman B2B industrial, rasa percaya tumbuh saat visitor melihat konteks implementasi, improvement yang bisa dipahami, dan narasi hasil yang masuk akal. Tiga kartu di bawah ini menunjukkan struktur case study yang cocok untuk ditaruh di landing page premium.
-          </p>
-        </div>
-
-        <div class="case-grid">
-          <article class="case-card reveal delay-1">
-            <span class="case-tag">Food & Beverage Plant</span>
-            <h3 class="card-title">Dari capex berat ke model implementasi yang lebih ringan.</h3>
-            <p class="card-copy">Ceritakan bagaimana diskusi proyek bergeser dari pembelian equipment besar menjadi model layanan infrastruktur air yang lebih mudah dijalankan.</p>
-            <div class="case-stat"><strong data-count="0" data-target="0" data-prefix="IDR ">0</strong><span>Capex awal</span></div>
-          </article>
-
-          <article class="case-card reveal delay-2">
-            <span class="case-tag">Manufacturing Utility</span>
-            <h3 class="card-title">Performa lebih terlihat setelah monitoring disatukan.</h3>
-            <p class="card-copy">Tonjolkan bagaimana SCADA-IoT memberi visibility yang lebih jelas untuk trending, alarm, dan keputusan operasional.</p>
-            <div class="case-stat"><strong data-count="0" data-target="24" data-suffix="/7">0</strong><span>Data visibility</span></div>
-          </article>
-
-          <article class="case-card reveal delay-3">
-            <span class="case-tag">Environment Management</span>
-            <h3 class="card-title">Arahkan cerita ke compliance dan stabilitas hasil.</h3>
-            <p class="card-copy">Case study bisa memperlihatkan bagaimana sistem dibangun untuk menjaga kualitas output lebih konsisten dan mudah dipantau.</p>
-            <div class="case-stat"><strong data-count="0" data-target="3" data-suffix=" layer">0</strong><span>Decision story</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="iot-monitoring">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="section-kicker">IoT & Monitoring</span>
-            <h2 class="section-title">Teknologi harus membuat keputusan lebih mudah diambil.</h2>
-          </div>
-          <p class="section-copy">
-            Framing monitoring di halaman ini bukan sebagai fitur teknis semata, tetapi sebagai alat untuk memberi ketenangan bagi manajemen, kejelasan bagi operator, dan data yang bisa dipakai untuk pembahasan performa proyek ke depan.
-          </p>
-        </div>
-
-        <div class="insight-grid">
-          <article class="monitor-card reveal delay-1">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M4 18V8m5 10V4m5 14v-7m5 7V11" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-            </div>
-            <span class="card-eyebrow">SCADA-IoT Visibility</span>
-            <h3 class="card-title">Realtime visibility untuk operasional dan stakeholder.</h3>
-            <p class="card-copy">Copy diarahkan agar visitor langsung menangkap satu hal: performa sistem tidak lagi gelap. Ada dashboard, ada histori, ada indikator, dan ada konteks untuk evaluasi berkelanjutan.</p>
-            <ul class="mini-list">
-              <li><span>Alarm, trending, dan histori performa.</span><b>Operational clarity</b></li>
-              <li><span>Data lebih mudah dibawa ke rapat internal.</span><b>Management ready</b></li>
-              <li><span>Pondasi lebih kuat untuk service model jangka panjang.</span><b>Lifecycle value</b></li>
-            </ul>
-          </article>
-
-          <article class="monitor-card chart reveal delay-2">
-            <div class="dashboard">
-              <div class="dashboard-head">
-                <strong>Invila™ Monitoring Snapshot</strong>
-                <span class="status-pill">Live View</span>
-              </div>
-              <div class="chart-wrap" aria-hidden="true">
-                <svg viewBox="0 0 560 220" role="img">
-                  <defs>
-                    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.35"></stop>
-                      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"></stop>
-                    </linearGradient>
-                  </defs>
-                  <g class="chart-grid">
-                    <line x1="20" y1="30" x2="540" y2="30"></line>
-                    <line x1="20" y1="85" x2="540" y2="85"></line>
-                    <line x1="20" y1="140" x2="540" y2="140"></line>
-                    <line x1="20" y1="195" x2="540" y2="195"></line>
-                  </g>
-                  <path class="chart-area" d="M20 170 C80 150, 110 80, 165 88 S260 112, 315 96 S405 52, 470 72 S520 102, 540 80 L540 220 L20 220 Z"></path>
-                  <path class="chart-line" d="M20 170 C80 150, 110 80, 165 88 S260 112, 315 96 S405 52, 470 72 S520 102, 540 80"></path>
-                  <circle class="chart-dot" cx="165" cy="88"></circle>
-                  <circle class="chart-dot" cx="315" cy="96"></circle>
-                  <circle class="chart-dot" cx="470" cy="72"></circle>
-                </svg>
-              </div>
-              <div class="chart-legend">
-                <div class="legend-item">
-                  <strong>98.4%</strong>
-                  <span>System visibility untuk titik performa utama.</span>
-                </div>
-                <div class="legend-item">
-                  <strong>24/7</strong>
-                  <span>Monitoring readiness yang mudah dipahami user.</span>
-                </div>
-                <div class="legend-item">
-                  <strong>1 View</strong>
-                  <span>Satu dashboard untuk percakapan lintas fungsi.</span>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="cta-card reveal">
-          <div>
-            <span class="section-kicker">Next Step</span>
-            <h3>Mulai dari WhatsApp, lanjutkan ke visit factory dan analisa project.</h3>
-            <p>
-              Halaman ini sudah dibuat sebagai 1 file HTML utuh dengan CSS dan JavaScript inline, sehingga bisa langsung dipreview tanpa dependensi lain. Tinggal ganti nomor WhatsApp, sesuaikan case studies real, lalu pakai sebagai dasar landing page premium Invila™.
-            </p>
-          </div>
-          <div class="cta-stack">
-            <a href="https://wa.me/6281234567890" class="btn">Hubungi Partner</a>
-            <a href="#top" class="btn-ghost">Kembali ke Atas</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-shell">
-      <div class="footer-brand">
-        <img src="LOGO INVILA 2026.png" alt="Logo Invila™" />
-        <span>Invila™</span>
-      </div>
-      <div>
-        PT. Invila Tirta Nusantara · Sentra Niaga 2 No. 5 Harapan Indah, Bekasi 17131, Jawa Barat
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      const header = document.querySelector('.header');
-      const nav = document.querySelector('[data-nav]');
-      const menuToggle = document.getElementById('menuToggle');
-      const navLinks = document.getElementById('navLinks');
-      const links = Array.from(document.querySelectorAll('.nav-links a'));
-      const sections = links
-        .map(link => document.querySelector(link.getAttribute('href')))
-        .filter(Boolean);
-      const counters = document.querySelectorAll('[data-count]');
-      const revealItems = document.querySelectorAll('.reveal');
-
-      function onScroll() {
-        if (window.scrollY > 10) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      }
-
-      function closeMenu() {
-        nav.classList.remove('menu-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
-
-      menuToggle.addEventListener('click', function () {
-        const isOpen = nav.classList.toggle('menu-open');
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      links.forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.14 });
-
-      revealItems.forEach(item => {
-        if (!item.classList.contains('is-visible')) revealObserver.observe(item);
-      });
-
-      const countObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          const target = Number(el.dataset.target || 0);
-          const prefix = el.dataset.prefix || '';
-          const suffix = el.dataset.suffix || '';
-          const duration = 1400;
-          const start = performance.now();
-
-          function frame(now) {
-            const progress = Math.min((now - start) / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = target * eased;
-            const value = target >= 10 ? Math.round(current) : current.toFixed(target % 1 !== 0 ? 1 : 0).replace(/\.0$/, '');
-            el.textContent = prefix + value + suffix;
-            if (progress < 1) {
-              requestAnimationFrame(frame);
-            } else {
-              el.textContent = prefix + target + suffix;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Strategic Engine Jepara - Invila™ & SCADA-IoT</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Chart.js for SCADA -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B132B',
+                            primary: '#1C3F60',
+                            accent: '#D4AF37', // Gold for legacy/value
+                            light: '#F0F4F8'
+                        },
+                        invila: {
+                            dark: '#0f172a',
+                            panel: '#1e293b',
+                            border: '#334155',
+                            accent: '#38bdf8',
+                            success: '#10b981',
+                            warning: '#f59e0b',
+                            danger: '#ef4444'
+                        }
+                    }
+                }
             }
-          }
+        }
+    </script>
 
-          requestAnimationFrame(frame);
-          countObserver.unobserve(el);
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B132B;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B132B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b5952f;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-panel-scada {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        .bg-hero {
+            background: linear-gradient(rgba(11, 19, 43, 0.8), rgba(11, 19, 43, 0.95)), url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+        }
+
+        .bg-tech {
+            background: linear-gradient(rgba(11, 19, 43, 0.9), rgba(11, 19, 43, 0.95)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* SCADA Specific Styles */
+        .led-green {
+            box-shadow: 0 0 10px #10b981, inset 0 0 5px #10b981;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .data-value { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 py-4 px-6 md:px-12 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-white tracking-tighter">
+                INVILA<span class="text-brand-accent">™</span>
+            </div>
+            <div class="hidden lg:flex space-x-6 text-sm font-semibold text-gray-300">
+                <a href="#masalah" class="hover:text-brand-accent transition">Realitas</a>
+                <a href="#solusi" class="hover:text-brand-accent transition">Paradigma Baru</a>
+                <a href="#teknologi" class="hover:text-brand-accent transition">Teknologi</a>
+                <a href="#scada" class="hover:text-invila-accent transition text-invila-accent"><i class="fa-solid fa-satellite-dish mr-1"></i> SCADA-IoT</a>
+                <a href="#skema" class="hover:text-brand-accent transition">Skema WaaS</a>
+                <a href="#legacy" class="hover:text-brand-accent transition">Warisan</a>
+            </div>
+            <a href="#closing" class="px-5 py-2 bg-brand-accent text-brand-dark font-bold rounded hover:bg-yellow-500 transition shadow-[0_0_15px_rgba(212,175,55,0.4)]">
+                Eksekusi Pra-FS
+            </a>
+        </div>
+    </nav>
+
+    <!-- SLIDE 1: THE VISION (HOOK) -->
+    <section id="vision" class="min-h-screen bg-hero flex flex-col justify-center relative px-6">
+        <div class="max-w-5xl mx-auto z-10 text-center pt-20">
+            <div data-aos="fade-down" data-aos-duration="1000" class="inline-block px-4 py-1 rounded-full border border-brand-accent text-brand-accent text-sm font-bold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                Proposal Strategis SPAM Kabupaten Jepara
+            </div>
+            <h1 data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200" class="text-5xl md:text-7xl font-black text-white leading-tight mb-6">
+                Mengamankan Urat Nadi <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-yellow-200">Ekonomi Jepara.</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400" class="text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto mb-12">
+                Transformasi Sistem Penyediaan Air Minum (SPAM) Melalui <b>"The Strategic Engine"</b> & Skema <b>Zero Capex</b> untuk Ketahanan Industri dan Masyarakat.
+            </p>
+            <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+                <a href="#masalah" class="inline-flex items-center justify-center w-16 h-16 rounded-full glass-panel hover:bg-brand-accent hover:text-brand-dark transition duration-300 scroll-indicator text-2xl">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: THE REALITY CHECK (AGITASI MASALAH) -->
+    <section id="masalah" class="min-h-screen py-24 px-6 bg-brand-dark flex items-center relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-sm font-bold text-red-500 tracking-widest uppercase mb-2">The Reality Check</h2>
+                <h3 class="text-4xl md:text-5xl font-black">Paradoks Infrastruktur Jepara</h3>
+                <p class="text-gray-400 mt-4 text-lg">Saat industri melaju pesat, infrastruktur dasar tertahan oleh sistemik masa lalu.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-red-500 hover:transform hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-red-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-chart-pie text-2xl text-red-500"></i>
+                    </div>
+                    <h4 class="text-4xl font-black mb-2">14%</h4>
+                    <h5 class="text-xl font-bold mb-3">Cakupan Kritis</h5>
+                    <p class="text-gray-400 leading-relaxed">Hanya 14% warga dan industri terlayani jaringan teknis PDAM secara optimal saat ini.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-orange-500 hover:transform hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-orange-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-lock text-2xl text-orange-500"></i>
+                    </div>
+                    <h4 class="text-4xl font-black mb-2">14 Tahun</h4>
+                    <h5 class="text-xl font-bold mb-3">Kebuntuan Fiskal</h5>
+                    <p class="text-gray-400 leading-relaxed">Tarif stagnan sejak 2010. Laba marjinal mengunci kemampuan Pemda/BUMD untuk melakukan belanja modal (CAPEX) raksasa.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-yellow-500 hover:transform hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-14 h-14 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-water text-2xl text-yellow-500"></i>
+                    </div>
+                    <h4 class="text-4xl font-black mb-2">Vulnerabilitas</h4>
+                    <h5 class="text-xl font-bold mb-3">Kegagalan Sistem</h5>
+                    <p class="text-gray-400 leading-relaxed">IPA eksisting lumpuh saat beban turbiditas (lumpur) ekstrem di Sungai SWD II akibat curah hujan tinggi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: THE PARADIGM SHIFT -->
+    <section id="solusi" class="min-h-screen py-24 px-6 bg-[#0a1024] flex items-center">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <div class="relative rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.15)] group">
+                    <div class="absolute inset-0 bg-brand-primary mix-blend-multiply opacity-60 group-hover:opacity-40 transition duration-500"></div>
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Peta Jepara Map" class="w-full h-auto transform scale-105 group-hover:scale-100 transition duration-700">
+                    <div class="absolute inset-0 border-2 border-brand-accent/30 rounded-2xl m-4"></div>
+                    <!-- Hotspots -->
+                    <div class="absolute top-1/3 left-1/4 w-4 h-4 bg-brand-accent rounded-full shadow-[0_0_15px_#D4AF37] animate-pulse"></div>
+                    <div class="absolute bottom-1/3 right-1/3 w-4 h-4 bg-brand-accent rounded-full shadow-[0_0_15px_#D4AF37] animate-pulse"></div>
+                </div>
+            </div>
+            
+            <div data-aos="fade-left">
+                <h2 class="text-sm font-bold text-brand-accent tracking-widest uppercase mb-2">The Paradigm Shift</h2>
+                <h3 class="text-4xl md:text-5xl font-black mb-6">Mengubah "Risiko" Menjadi <span class="text-brand-accent">Aset Tak Ternilai</span></h3>
+                <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                    Kita memiliki surplus air permukaan yang selama ini hanya dipandang sebagai risiko limpasan. Tantangannya hanya satu: Bagaimana mengolah air ekstrem ini menjadi standar manufaktur tanpa membebani APBD?
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-primary flex items-center justify-center border border-brand-accent/30 text-brand-accent mt-1">
+                            <i class="fa-solid fa-water"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-xl font-bold">Sungai Mayong Lama & SWD I/II</h4>
+                            <p class="text-gray-400 mt-1">Urat nadi pasokan dengan kapasitas debit raksasa, ideal sebagai intake utama industri Jepara Selatan.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-primary flex items-center justify-center border border-brand-accent/30 text-brand-accent mt-1">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-xl font-bold">Integrasi Embung Kalimati</h4>
+                            <p class="text-gray-400 mt-1">Kapasitas tampung 1.000.000 m³ siap difungsikan sebagai <i>long storage</i> penyangga krisis di puncak kemarau.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: THE STRATEGIC ENGINE (TEKNOLOGI) -->
+    <section id="teknologi" class="min-h-screen py-24 px-6 bg-tech flex items-center border-t border-white/5">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-sm font-bold text-brand-accent tracking-widest uppercase mb-2">The Strategic Engine</h2>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">Ekosistem Teknologi Invila™</h3>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto">Dirancang presisi sebagai infrastruktur penggerak ekonomi yang tangguh di segala cuaca, menjamin <b>Zero-Downtime</b> operasional.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Tech 1 -->
+                <div class="glass-panel p-8 rounded-xl relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -right-4 -top-4 text-white/5 text-8xl group-hover:text-brand-accent/10 transition duration-300">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-brand-accent mb-4 relative z-10">Arsitektur 4-Zona Intelligence</h4>
+                    <p class="text-gray-300 leading-relaxed relative z-10 text-sm">
+                        Bukan sekadar filtrasi. Instalasi canggih ini mengintegrasikan <b>Invila High Rate Clarifier</b> yang menjamin pemisahan lumpur berlangsung kilat, kebal terhadap <i>shock loading</i> turbiditas ekstrem dari Sungai SWD II.
+                    </p>
+                </div>
+                
+                <!-- Tech 2 -->
+                <div class="glass-panel p-8 rounded-xl relative overflow-hidden group border-brand-accent/40 border" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute -right-4 -top-4 text-brand-accent/5 text-8xl group-hover:text-brand-accent/10 transition duration-300">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-4 relative z-10">Modular Reinforced Fiber</h4>
+                    <p class="text-gray-300 leading-relaxed relative z-10 text-sm">
+                        Dicetak presisi dengan material <i>Reinforced Fiber food grade</i>. 100% kebal korosi, memastikan standar higienitas tingkat industri. Desain modular mempercepat pemasangan <i>plug-and-play</i> di lapangan tanpa perlu konstruksi beton masif.
+                    </p>
+                </div>
+
+                <!-- Tech 3 -->
+                <div class="glass-panel p-8 rounded-xl relative overflow-hidden group" data-aos="fade-up" data-aos-delay="500">
+                    <div class="absolute -right-4 -top-4 text-white/5 text-8xl group-hover:text-brand-accent/10 transition duration-300">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-brand-accent mb-4 relative z-10">SCADA-IoT & AI Layer</h4>
+                    <p class="text-gray-300 leading-relaxed relative z-10 text-sm">
+                        Dioperasikan secara <i>autopilot</i>. Algoritma <i>Stability Corridor</i> mengoreksi dosis kimia otomatis dalam hitungan detik saat mendeteksi lonjakan polutan. Memangkas risiko <i>human error</i> hingga 0%.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: SCADA-IoT DASHBOARD (Technical Demonstration) -->
+    <section id="scada" class="min-h-screen py-24 px-6 bg-[#050813] flex flex-col items-center border-y border-invila-accent/20 relative">
+        <div class="w-full max-w-[1400px]">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-sm font-bold text-invila-accent tracking-widest uppercase mb-2"><i class="fa-solid fa-satellite-dish"></i> Real-Time Command Center</h2>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">SCADA-IoT Invila™</h3>
+                <p class="text-gray-400 text-lg max-w-3xl mx-auto">Sistem kendali terpusat yang menjamin transparansi data dan operasional 100% Autopilot. <b>Direktur PDAM memiliki kontrol dan visibilitas penuh</b> dari jarak jauh.</p>
+            </div>
+
+            <!-- SCADA DASHBOARD CONTAINER -->
+            <div class="rounded-2xl border border-invila-border shadow-[0_0_50px_rgba(56,189,248,0.15)] overflow-hidden flex flex-col bg-invila-dark" data-aos="fade-up" data-aos-delay="200">
+                
+                <!-- SCADA NAV -->
+                <nav class="glass-panel-scada w-full px-6 py-4 flex justify-between items-center z-10 border-b border-invila-border">
+                    <div class="flex items-center gap-4">
+                        <div class="flex flex-col">
+                            <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Facility</span>
+                            <span class="text-sm font-semibold text-white">SPAM Jepara - The Strategic Engine</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="flex items-center gap-2 bg-[#0f172a] px-3 py-1.5 rounded-md border border-invila-border">
+                            <div class="w-2.5 h-2.5 bg-invila-success rounded-full led-green"></div>
+                            <span class="text-xs font-mono text-invila-success font-bold">SYSTEM AUTOPILOT</span>
+                        </div>
+                        <div class="text-right hidden sm:block">
+                            <div class="text-xs text-slate-400 font-mono" id="clock">00:00:00 WIB</div>
+                            <div class="text-[10px] text-slate-500">AI Model: Stability Corridor v2.4</div>
+                        </div>
+                        <button class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center border border-slate-600">
+                            <i class="fa-solid fa-user-tie text-invila-accent"></i>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- SCADA MAIN CONTENT GRID -->
+                <div class="p-6 grid grid-cols-12 gap-6 relative z-10">
+                    
+                    <!-- LEFT COLUMN: 4-ZONA ARCHITECTURE -->
+                    <div class="col-span-12 xl:col-span-8 flex flex-col gap-6">
+                        
+                        <!-- Process Overview Top KPIs -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="glass-panel-scada p-4 rounded-xl">
+                                <div class="text-xs text-slate-400 font-semibold mb-1 uppercase">Influent Flow</div>
+                                <div class="text-2xl font-bold text-white data-value"><span id="infFlow">105.2</span> <span class="text-sm text-slate-500">L/s</span></div>
+                                <div class="mt-2 text-[10px] text-invila-warning"><i class="fa-solid fa-arrow-trend-up"></i> +2.4% vs Last Hour</div>
+                            </div>
+                            <div class="glass-panel-scada p-4 rounded-xl border-b-2 border-b-invila-danger">
+                                <div class="text-xs text-slate-400 font-semibold mb-1 uppercase">Raw Water Turbidity</div>
+                                <div class="text-2xl font-bold text-white data-value"><span id="rwTurbidity">85.4</span> <span class="text-sm text-slate-500">NTU</span></div>
+                                <div class="mt-2 text-[10px] text-invila-danger"><i class="fa-solid fa-triangle-exclamation"></i> High Load Detected</div>
+                            </div>
+                            <div class="glass-panel-scada p-4 rounded-xl border-b-2 border-b-invila-success">
+                                <div class="text-xs text-slate-400 font-semibold mb-1 uppercase">Product Water TDS</div>
+                                <div class="text-2xl font-bold text-invila-accent data-value"><span id="prodTds">32.1</span> <span class="text-sm text-slate-500">mg/L</span></div>
+                                <div class="mt-2 text-[10px] text-invila-success"><i class="fa-solid fa-check"></i> Target < 50 mg/L</div>
+                            </div>
+                            <div class="glass-panel-scada p-4 rounded-xl">
+                                <div class="text-xs text-slate-400 font-semibold mb-1 uppercase">Total Power</div>
+                                <div class="text-2xl font-bold text-white data-value"><span id="powerKw">42.8</span> <span class="text-sm text-slate-500">kW</span></div>
+                                <div class="mt-2 text-[10px] text-invila-success"><i class="fa-solid fa-bolt"></i> Efficiency Normal</div>
+                            </div>
+                        </div>
+
+                        <!-- 4-ZONA ARCHITECTURE STATUS -->
+                        <div class="glass-panel-scada p-5 rounded-xl flex-1 flex flex-col">
+                            <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4"><i class="fa-solid fa-layer-group mr-2"></i> 4-Zona Intelligence Status</h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
+                                <!-- ZONA 1 -->
+                                <div class="bg-[#0f172a] rounded-lg p-4 border border-invila-border relative overflow-hidden flex flex-col justify-between shadow-inner">
+                                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-600 to-slate-400"></div>
+                                    <div>
+                                        <div class="text-[10px] font-bold text-slate-400 mb-1">ZONA 1</div>
+                                        <div class="text-sm font-bold text-white mb-3">The Bio-Shield</div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">Oxy-Pure Dosing</span>
+                                                <span class="text-invila-success font-mono font-bold">AUTO</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">Turbidity Out</span>
+                                                <span class="text-white font-mono"><span id="z1Turb">4.2</span> NTU</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">COD Reduction</span>
+                                                <span class="text-invila-accent font-mono font-bold">~61%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-3 border-t border-slate-700">
+                                        <span class="text-[9px] text-slate-500"><i class="fa-solid fa-circle-check text-invila-success"></i> Zero-Chemical Cost Active</span>
+                                    </div>
+                                </div>
+
+                                <!-- ZONA 2 -->
+                                <div class="bg-[#0f172a] rounded-lg p-4 border border-invila-border relative overflow-hidden flex flex-col justify-between shadow-inner">
+                                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
+                                    <div>
+                                        <div class="text-[10px] font-bold text-slate-400 mb-1">ZONA 2</div>
+                                        <div class="text-sm font-bold text-white mb-3">MBBR Bio-Engine</div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">DO Level</span>
+                                                <span class="text-white font-mono">2.8 mg/L</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">Biofilm Health</span>
+                                                <span class="text-invila-success font-mono font-bold">OPTIMAL</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">RAS/WAS</span>
+                                                <span class="text-invila-accent font-mono font-bold">AUTO</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-3 border-t border-slate-700">
+                                        <span class="text-[9px] text-slate-500"><i class="fa-solid fa-circle-check text-invila-success"></i> High-Rate Clarifier Sync</span>
+                                    </div>
+                                </div>
+
+                                <!-- ZONA 3 -->
+                                <div class="bg-[#0f172a] rounded-lg p-4 border border-invila-border relative overflow-hidden flex flex-col justify-between shadow-inner">
+                                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400"></div>
+                                    <div>
+                                        <div class="text-[10px] font-bold text-slate-400 mb-1">ZONA 3</div>
+                                        <div class="text-sm font-bold text-white mb-3">The Guardian (GSF)</div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">Diff Pressure (DP)</span>
+                                                <span class="text-invila-warning font-mono font-bold"><span id="gsfDp">0.9</span> Bar</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">Turbidity Out</span>
+                                                <span class="text-invila-success font-mono"><span id="gsfTurb">0.12</span> NTU</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">SDI</span>
+                                                <span class="text-white font-mono">< 2.5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-3 border-t border-slate-700">
+                                        <span class="text-[9px] text-slate-500"><i class="fa-solid fa-shield-halved text-invila-success"></i> RO Protection Active</span>
+                                    </div>
+                                </div>
+
+                                <!-- ZONA 4 -->
+                                <div class="bg-[#0f172a] rounded-lg p-4 border border-invila-border relative overflow-hidden flex flex-col justify-between shadow-inner">
+                                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 to-indigo-400"></div>
+                                    <div>
+                                        <div class="text-[10px] font-bold text-slate-400 mb-1">ZONA 4</div>
+                                        <div class="text-sm font-bold text-white mb-3">Adv. Reclamation</div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">RO High Press</span>
+                                                <span class="text-white font-mono">12.5 Bar</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">Recovery</span>
+                                                <span class="text-white font-mono">75%</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span class="text-slate-400">TDS Out</span>
+                                                <span class="text-invila-accent font-mono font-bold"><span id="roTds">32.1</span> mg/L</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-3 border-t border-slate-700">
+                                        <span class="text-[9px] text-slate-500"><i class="fa-solid fa-droplet text-invila-success"></i> Industrial Grade Flow</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart Area -->
+                        <div class="glass-panel-scada p-4 rounded-xl h-56">
+                            <div class="flex justify-between items-center mb-2">
+                                <h2 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Quality Trend (Turbidity & TDS)</h2>
+                                <div class="flex gap-3 text-[10px]">
+                                    <span class="text-invila-danger"><i class="fa-solid fa-circle"></i> Raw Turbidity</span>
+                                    <span class="text-invila-accent"><i class="fa-solid fa-circle"></i> Prod TDS</span>
+                                </div>
+                            </div>
+                            <div class="relative h-40 w-full">
+                                <canvas id="qualityChart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: INTELLIGENCE LAYER -->
+                    <div class="col-span-12 xl:col-span-4 flex flex-col gap-6">
+                        
+                        <!-- Process Intelligence (Stability Corridor) -->
+                        <div class="glass-panel-scada p-5 rounded-xl border border-invila-accent/30">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider"><i class="fa-solid fa-brain mr-2"></i> Process Intelligence</h2>
+                                <span class="px-2 py-0.5 bg-invila-accent/20 text-invila-accent text-[9px] font-bold rounded">STABILITY CORRIDOR ACTIVE</span>
+                            </div>
+                            <div class="bg-[#050813] p-3 rounded font-mono text-[10px] text-slate-300 h-32 overflow-y-auto space-y-2 border border-slate-700 shadow-inner" id="aiLog">
+                                <div class="text-slate-500">[10:45:02] Monitoring Influent...</div>
+                                <div class="text-invila-warning">[10:45:15] SPIKE DETECTED: Raw Turbidity > 80 NTU</div>
+                                <div class="text-invila-accent">[10:45:16] AI Action: Coagulant auto-adjusted +12%</div>
+                                <div class="text-invila-success">[10:45:20] Zone 1 Clarifier stabilizing. Floc structure intact.</div>
+                            </div>
+                        </div>
+
+                        <!-- Smart GSF Backwash Control -->
+                        <div class="glass-panel-scada p-5 rounded-xl flex-1 flex flex-col justify-between">
+                            <div>
+                                <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-2"><i class="fa-solid fa-arrows-rotate mr-2"></i> Smart GSF Backwash</h2>
+                                <p class="text-[10px] text-slate-400 mb-4">Trigger Dual-Logic: DP > 1.5 Bar OR Timer 24h.</p>
+                                
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-16 h-16 rounded-full border-4 border-invila-border flex items-center justify-center relative bg-[#0f172a]">
+                                        <svg class="absolute inset-0 w-full h-full transform -rotate-90">
+                                            <circle cx="30" cy="30" r="28" stroke="transparent" stroke-width="4" fill="none" />
+                                            <circle cx="30" cy="30" r="28" stroke="#f59e0b" stroke-width="4" fill="none" stroke-dasharray="175" stroke-dashoffset="70" />
+                                        </svg>
+                                        <span class="font-mono font-bold text-sm text-invila-warning" id="gsfDpCircle">0.9</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-xs text-slate-400 mb-1">Differential Pressure (Bar)</div>
+                                        <div class="text-[10px] text-slate-500">Status: <span class="text-invila-success font-bold">NORMAL (Air-Scouring Standby)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 mt-4">
+                                <button class="py-2 bg-slate-700 hover:bg-slate-600 text-xs font-bold text-white rounded transition border border-slate-500">
+                                    <i class="fa-solid fa-clock-rotate-left mr-1"></i> TIMER: 14h Left
+                                </button>
+                                <button class="py-2 bg-invila-accent/20 hover:bg-invila-accent/30 text-invila-accent text-xs font-bold rounded transition border border-invila-accent/50">
+                                    <i class="fa-solid fa-play mr-1"></i> FORCE BACKWASH
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hardware Health Monitoring -->
+                        <div class="glass-panel-scada p-5 rounded-xl">
+                            <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4"><i class="fa-solid fa-microchip mr-2"></i> Hardware Health</h2>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-semibold">Feed Pump A</span>
+                                        <span class="text-invila-success font-mono" id="pump1Amp">14.2 A</span>
+                                    </div>
+                                    <div class="w-full bg-[#0f172a] rounded-full h-1.5 border border-invila-border">
+                                        <div class="bg-invila-success h-1.5 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-slate-300 font-semibold">RO HP Pump 1</span>
+                                        <span class="text-invila-warning font-mono" id="pump2Amp">45.8 A</span>
+                                    </div>
+                                    <div class="w-full bg-[#0f172a] rounded-full h-1.5 border border-invila-border">
+                                        <div class="bg-invila-warning h-1.5 rounded-full" style="width: 82%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-[#0f172a] rounded border border-invila-border">
+                                <div class="text-[10px] text-slate-400 mb-1">AI PREDICTIVE MAINTENANCE</div>
+                                <div class="text-xs text-invila-accent font-mono"><i class="fa-solid fa-circle-info mr-1"></i> HP Pump 1 bearing vibration stable. Next service in 412 hours.</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: THE FINANCIAL BREAKTHROUGH -->
+    <section id="skema" class="min-h-screen py-24 px-6 bg-brand-dark flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="text-center mb-16" data-aos="fade-down">
+                <h2 class="text-sm font-bold text-emerald-400 tracking-widest uppercase mb-2">The Financial Liberation</h2>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">Pemda Membangun, Tanpa Modal.</h3>
+            </div>
+
+            <!-- Flowchart Infographic -->
+            <div class="relative max-w-5xl mx-auto">
+                <!-- Decorative line -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-brand-accent to-blue-500 transform -translate-y-1/2 z-0 opacity-30"></div>
+                
+                <div class="grid md:grid-cols-3 gap-8 relative z-10">
+                    
+                    <!-- Step 1 -->
+                    <div class="bg-[#121c3a] p-8 rounded-2xl border border-emerald-500/30 text-center shadow-[0_10px_30px_rgba(16,185,129,0.1)]" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="w-20 h-20 mx-auto bg-emerald-500/20 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-coins text-3xl text-emerald-400"></i>
+                        </div>
+                        <h4 class="text-2xl font-black text-emerald-400 mb-2">Zero Capex</h4>
+                        <p class="text-sm text-gray-400">Invila™ membiayai 100% investasi pembangunan Ekosistem Teknologi. APBD & Kas BUMD tetap utuh & aman.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-[#121c3a] p-8 rounded-2xl border border-brand-accent/30 text-center shadow-[0_10px_30px_rgba(212,175,55,0.1)] transform md:-translate-y-4" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="w-20 h-20 mx-auto bg-brand-accent/20 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-handshake text-3xl text-brand-accent"></i>
+                        </div>
+                        <h4 class="text-2xl font-black text-brand-accent mb-2">WaaS (Sewa IPA)</h4>
+                        <p class="text-sm text-gray-400">Skema <i>Water as a Service</i>. Pembayaran berdasarkan <i>Off-take Agreement</i> (Volume m³ air yang sukses diproduksi untuk industri).</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-[#121c3a] p-8 rounded-2xl border border-blue-500/30 text-center shadow-[0_10px_30px_rgba(59,130,246,0.1)]" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="w-20 h-20 mx-auto bg-blue-500/20 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa-solid fa-shield-check text-3xl text-blue-400"></i>
+                        </div>
+                        <h4 class="text-2xl font-black text-blue-400 mb-2">Proteksi Fiskal</h4>
+                        <p class="text-sm text-gray-400">Jaminan pembayaran di-<i>ring-fence</i> langsung dari rekening industri pengguna (Escrow). Kas PDAM domestik tidak terganggu.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: THE ULTIMATE LEGACY -->
+    <section id="legacy" class="min-h-screen py-24 px-6 flex items-center bg-gradient-to-br from-[#0B132B] to-[#1a2b5e] relative overflow-hidden">
+        <!-- Abstract Gold shapes -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent opacity-5 blur-[150px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-primary opacity-20 blur-[150px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center z-10 relative">
+            <div data-aos="fade-right">
+                <h2 class="text-sm font-bold text-brand-accent tracking-widest uppercase mb-2">The Ultimate Legacy</h2>
+                <h3 class="text-4xl md:text-5xl font-black mb-6">Warisan Kepemimpinan,<br>Aset Ratusan Miliar Rupiah.</h3>
+                
+                <div class="bg-white/5 border border-white/10 rounded-xl p-6 mb-6">
+                    <h4 class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-yellow-200 mb-2">Tahun Ke-15</h4>
+                    <p class="text-gray-300 font-medium">Pengalihan 100% Aset menjadi Barang Milik Daerah (BMD) di bawah naungan PDAM Jepara.</p>
+                </div>
+
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-green-400 mt-1 mr-3"></i>
+                        <span class="text-gray-300">Skema <i>Lease-Purchase</i> yang sah secara hukum tanpa risiko audit.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-green-400 mt-1 mr-3"></i>
+                        <span class="text-gray-300"><b>Jaminan Kondisi Prima:</b> Sistem <i>Hardware Health Monitoring</i> dan material <i>Reinforced Fiber</i> memastikan aset yang diserahkan BUKAN besi tua, melainkan aset mutakhir.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-check text-green-400 mt-1 mr-3"></i>
+                        <span class="text-gray-300">Otomatis melonjakkan valuasi dan neraca kekayaan daerah di masa depan.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="relative flex justify-center" data-aos="fade-left" data-aos-delay="200">
+                <div class="w-full max-w-md bg-gradient-to-tr from-[#1a2442] to-[#24335c] rounded-3xl p-8 border border-brand-accent/40 shadow-[0_0_50px_rgba(212,175,55,0.15)] transform rotate-2 hover:rotate-0 transition duration-500">
+                    <div class="text-center mb-8">
+                        <i class="fa-solid fa-file-contract text-5xl text-brand-accent mb-4"></i>
+                        <h4 class="text-2xl font-bold uppercase tracking-wider text-white">Sertifikat Pengalihan</h4>
+                        <p class="text-xs text-brand-accent mt-1">BARANG MILIK DAERAH</p>
+                    </div>
+                    <div class="space-y-4 text-sm text-gray-400 border-t border-white/10 pt-6">
+                        <div class="flex justify-between"><span>Penerima Hak</span> <span class="text-white font-bold">PEMKAB JEPARA</span></div>
+                        <div class="flex justify-between"><span>Objek Aset</span> <span class="text-white font-bold">SPAM Strategic Engine</span></div>
+                        <div class="flex justify-between"><span>Status Audit Teknis</span> <span class="text-green-400 font-bold">KONDISI PRIMA (PASSED)</span></div>
+                        <div class="flex justify-between border-t border-white/10 pt-4"><span>Beban APBD</span> <span class="text-brand-accent font-black text-lg">Rp 0,-</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: ROADMAP TO COD -->
+    <section class="min-h-screen py-24 px-6 bg-[#0a1024] flex items-center border-t border-white/5">
+        <div class="max-w-6xl mx-auto w-full">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-sm font-bold text-blue-400 tracking-widest uppercase mb-2">Roadmap To COD</h2>
+                <h3 class="text-4xl md:text-5xl font-black mb-4">Kecepatan Eksekusi (5 Bulan)</h3>
+                <p class="text-gray-400 text-lg">Keunggulan <i>Modular Reinforced Fiber</i> memangkas waktu konstruksi beton konvensional secara drastis.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-brand-primary hidden md:block"></div>
+                
+                <div class="space-y-8 relative z-10">
+                    <!-- Month 1 -->
+                    <div class="flex flex-col md:flex-row items-center w-full" data-aos="fade-up">
+                        <div class="md:w-1/2 md:pr-12 md:text-right text-center mb-4 md:mb-0">
+                            <h4 class="text-2xl font-bold text-white">Bulan 1: Pra-FS & Desain</h4>
+                            <p class="text-gray-400 mt-2 text-sm">Penetapan titik intake strategis, uji kualitas air <i>time-series</i>, dan pemodelan finansial komprehensif.</p>
+                        </div>
+                        <div class="w-10 h-10 bg-brand-accent rounded-full border-4 border-[#0a1024] z-10 hidden md:flex items-center justify-center text-brand-dark font-bold text-sm">1</div>
+                        <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                    </div>
+
+                    <!-- Month 2 -->
+                    <div class="flex flex-col md:flex-row items-center w-full" data-aos="fade-up" data-aos-delay="100">
+                        <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                        <div class="w-10 h-10 bg-blue-500 rounded-full border-4 border-[#0a1024] z-10 hidden md:flex items-center justify-center text-white font-bold text-sm">2</div>
+                        <div class="md:w-1/2 md:pl-12 md:text-left text-center mt-4 md:mt-0">
+                            <h4 class="text-2xl font-bold text-white">Bulan 2: Legal & PKS</h4>
+                            <p class="text-gray-400 mt-2 text-sm">Penandatanganan Perjanjian Kerjasama (SGU), penetapan tarif <i>off-take</i>, dan pengesahan legalitas hibah aset.</p>
+                        </div>
+                    </div>
+
+                    <!-- Month 3-5 -->
+                    <div class="flex flex-col md:flex-row items-center w-full" data-aos="fade-up" data-aos-delay="200">
+                        <div class="md:w-1/2 md:pr-12 md:text-right text-center mb-4 md:mb-0">
+                            <h4 class="text-2xl font-bold text-brand-accent">Bulan 3 - 5: Konstruksi & COD</h4>
+                            <p class="text-gray-300 mt-2 text-sm">Pabrikasi modul, mobilisasi, instalasi <i>High Rate Clarifier</i>, <i>commissioning</i> beban puncak, hingga Air Mengalir (COD).</p>
+                        </div>
+                        <div class="w-10 h-10 bg-green-500 rounded-full border-4 border-[#0a1024] z-10 hidden md:flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_#22c55e]">5</div>
+                        <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: CALL TO ACTION (CLOSING) -->
+    <section id="closing" class="min-h-screen py-24 px-6 bg-hero flex items-center relative overflow-hidden border-t-4 border-brand-accent">
+        <!-- Overlay dark -->
+        <div class="absolute inset-0 bg-[#0B132B] opacity-80 z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0B132B] via-transparent to-transparent z-0"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <div data-aos="zoom-in" data-aos-duration="1000">
+                <i class="fa-solid fa-handshake-angle text-6xl text-brand-accent mb-8"></i>
+                <h2 class="text-5xl md:text-6xl font-black text-white leading-tight mb-8">
+                    Mari Wujudkan <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-yellow-200">Kemandirian Air Jepara</span> Hari Ini.
+                </h2>
+                
+                <div class="glass-panel p-8 rounded-2xl mb-12 border border-brand-accent/20 text-left md:text-center shadow-2xl">
+                    <p class="text-xl text-gray-300 font-light italic leading-relaxed">
+                        "Bapak Bupati, teknologi kami sudah siap, instrumen pendanaan dari kami telah tersedia, dan aliran sungai Jepara menanti untuk dioptimalkan sebagai penggerak ekonomi. Kami tidak membebani APBD sepeser pun. Kami memohon restu Bapak agar Pra-Feasibility Study ini dapat segera kami mulai bersama tim daerah minggu depan."
+                    </p>
+                </div>
+
+                <button onclick="approveProject()" class="group relative px-8 py-5 bg-brand-accent text-brand-dark text-xl font-black rounded-lg uppercase tracking-widest overflow-hidden hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.4)]">
+                    <span class="relative z-10 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-power-off"></i> IZINKAN PRA-FS DIMULAI
+                    </span>
+                    <div class="absolute inset-0 h-full w-full bg-white opacity-0 group-hover:opacity-20 transition duration-300"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="bg-brand-dark border border-brand-accent p-10 rounded-2xl max-w-md w-full relative z-10 text-center shadow-[0_0_50px_rgba(212,175,55,0.2)] transform scale-95 opacity-0 transition-all duration-300" id="modalContent">
+            <div class="w-20 h-20 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-3xl font-black text-white mb-2">DISETUJUI</h3>
+            <p class="text-gray-400 mb-8">Tahap Pra-Feasibility Study (Pra-FS) untuk Proyek WaaS SPAM Kabupaten Jepara segera diinisiasi bersama tim gabungan daerah.</p>
+            <button onclick="closeModal()" class="w-full py-3 bg-brand-accent text-brand-dark font-bold rounded-lg hover:bg-yellow-500 transition">
+                Selesai
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS Animation
+        AOS.init({
+            once: true, // whether animation should happen only once - while scrolling down
+            offset: 100, // offset (in px) from the original trigger point
         });
-      }, { threshold: 0.5 });
 
-      counters.forEach(counter => countObserver.observe(counter));
-
-      const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const id = '#' + entry.target.id;
-          links.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === id);
-          });
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-dark/95', 'shadow-lg');
+                navbar.classList.remove('glass-panel');
+            } else {
+                navbar.classList.remove('bg-brand-dark/95', 'shadow-lg');
+                navbar.classList.add('glass-panel');
+            }
         });
-      }, {
-        threshold: 0.45,
-        rootMargin: '-20% 0px -35% 0px'
-      });
 
-      sections.forEach(section => sectionObserver.observe(section));
+        // Modal Logic
+        const modal = document.getElementById('successModal');
+        const modalContent = document.getElementById('modalContent');
 
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') closeMenu();
-      });
+        function approveProject() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
 
-      document.addEventListener('click', (event) => {
-        if (!nav.contains(event.target)) closeMenu();
-      });
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
 
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
-    })();
-  </script>
+        // --------------------------------------------------------
+        // SCADA IoT LIVE SIMULATION SCRIPTS
+        // --------------------------------------------------------
+        
+        // Clock Update
+        setInterval(() => {
+            const now = new Date();
+            const clockElement = document.getElementById('clock');
+            if(clockElement) {
+                clockElement.innerText = now.toLocaleTimeString('id-ID') + ' WIB';
+            }
+        }, 1000);
+
+        // Chart.js Setup
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('qualityChart');
+            if(ctx) {
+                const qualityChart = new Chart(ctx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['10:00', '10:10', '10:20', '10:30', '10:40', '10:50'],
+                        datasets: [
+                            {
+                                label: 'Raw Turbidity',
+                                data: [45, 50, 48, 75, 85, 82],
+                                borderColor: '#ef4444',
+                                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                borderWidth: 2,
+                                tension: 0.4,
+                                fill: true,
+                                yAxisID: 'y'
+                            },
+                            {
+                                label: 'Prod TDS',
+                                data: [31, 32, 31.5, 32.5, 32.1, 32],
+                                borderColor: '#38bdf8',
+                                borderWidth: 2,
+                                tension: 0.4,
+                                yAxisID: 'y1'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { grid: { color: '#334155', drawBorder: false }, ticks: { color: '#94a3b8', font: {size: 9} } },
+                            y: { position: 'left', grid: { color: '#334155' }, ticks: { color: '#ef4444', font: {size: 9} } },
+                            y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { color: '#38bdf8', font: {size: 9} } }
+                        }
+                    }
+                });
+
+                // Live Data Simulation
+                setInterval(() => {
+                    // Random fluctuations
+                    if(document.getElementById('infFlow')) document.getElementById('infFlow').innerText = (105 + Math.random() * 2).toFixed(1);
+                    if(document.getElementById('rwTurbidity')) document.getElementById('rwTurbidity').innerText = (80 + Math.random() * 10).toFixed(1);
+                    if(document.getElementById('prodTds')) document.getElementById('prodTds').innerText = (31 + Math.random() * 2).toFixed(1);
+                    if(document.getElementById('roTds')) document.getElementById('roTds').innerText = document.getElementById('prodTds').innerText;
+                    if(document.getElementById('powerKw')) document.getElementById('powerKw').innerText = (42 + Math.random() * 1.5).toFixed(1);
+                    
+                    let dp = (0.8 + Math.random() * 0.2).toFixed(2);
+                    if(document.getElementById('gsfDp')) document.getElementById('gsfDp').innerText = dp;
+                    if(document.getElementById('gsfDpCircle')) document.getElementById('gsfDpCircle').innerText = dp;
+                    
+                    if(document.getElementById('pump1Amp')) document.getElementById('pump1Amp').innerText = (14.0 + Math.random() * 0.5).toFixed(1) + ' A';
+                    if(document.getElementById('pump2Amp')) document.getElementById('pump2Amp').innerText = (45.0 + Math.random() * 1.5).toFixed(1) + ' A';
+
+                    // Chart update logic (shift and push)
+                    const rwTurbidityEl = document.getElementById('rwTurbidity');
+                    const prodTdsEl = document.getElementById('prodTds');
+                    
+                    if(rwTurbidityEl && prodTdsEl) {
+                        const rwVal = parseFloat(rwTurbidityEl.innerText);
+                        const tdsVal = parseFloat(prodTdsEl.innerText);
+                        
+                        qualityChart.data.datasets[0].data.shift();
+                        qualityChart.data.datasets[0].data.push(rwVal);
+                        
+                        qualityChart.data.datasets[1].data.shift();
+                        qualityChart.data.datasets[1].data.push(tdsVal);
+                        
+                        qualityChart.update();
+                    }
+                }, 3000);
+            }
+        });
+
+        // AI Log Simulation
+        const logs = [
+            "[10:55:01] Monitoring DO Level in Zone 2...",
+            "[10:55:12] DO Level stable at 2.8 mg/L.",
+            "[10:56:00] GSF Timer Check: 14h remaining until Auto-Backwash.",
+            "[10:57:30] RO High Pressure optimal at 12.5 Bar.",
+            "[10:58:15] Stability Corridor: Adjusting VSD Pump 1 to match target flow."
+        ];
+        let logIndex = 0;
+        setInterval(() => {
+            const logContainer = document.getElementById('aiLog');
+            if(logContainer) {
+                const newLog = document.createElement('div');
+                newLog.className = 'text-slate-500';
+                newLog.innerText = logs[logIndex % logs.length];
+                logContainer.appendChild(newLog);
+                logContainer.scrollTop = logContainer.scrollHeight;
+                logIndex++;
+                if(logContainer.children.length > 8) logContainer.removeChild(logContainer.firstChild);
+            }
+        }, 5000);
+    </script>
 </body>
 </html>
